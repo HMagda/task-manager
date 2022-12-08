@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Source+Sans+Pro&display=swap');
+
+$color-light: #f7f9f4;
+$color-dark: #393d50;
+$color-active: #f56457;
+$color-finished: #ede5d8;
+
+$font-family: 'Source Sans Pro', sans-serif;
+
+$base-size: 16px;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin respond-large {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin respond-medium {
+  @media (max-width: 1023px) and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin respond-small {
+  @media (max-width: 767px) {
+    @content;
+  }
+}

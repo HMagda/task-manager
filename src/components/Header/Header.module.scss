@@ -1,0 +1,11 @@
+@import '../../styles/settings.scss';
+
+.header_container {
+  @include flex-center;
+
+  .header {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: ($base-size * 2);
+  }
+}
