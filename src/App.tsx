@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Header from './components/Header/Header';
 import InputField from './components/InputField/InputField';
+import TaskList from './components/TaskList/TaskList';
 import {Task} from './model';
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
     <>
       <Header />
       <InputField task={task} setTask={setTask} handleAdd={handleAdd} />
+      <TaskList tasks={tasks} setTasks={setTasks} />
     </>
   );
 };

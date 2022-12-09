@@ -1,0 +1,22 @@
+@import '../../styles/settings.scss';
+
+.single_task_container {
+  background-color: rgba($color: $color-active, $alpha: 0.5);
+  margin: $base-size;
+  border-radius: $base-size;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .single_task_text {
+    margin: $base-size;
+  }
+
+  .icon_container {
+    margin: $base-size;
+
+    .icon {
+      margin: $base-size;
+    }
+  }
+}
