@@ -15,13 +15,13 @@ const SingleTask: React.FC<Props> = ({task, tasks, setTasks}) => {
       <span className={styles.single_task_text}>{task.task}</span>
       <div className={styles.icon_container}>
         <span className={styles.icon}>
-            <FiEdit />
+          <FiEdit />
         </span>
         <span className={styles.icon}>
-            <FiCheckCircle />
+          <FiCheckCircle />
         </span>
-        <span className={styles.icon}>
-            <FiTrash2 />
+        <span className={`${styles.icon} ${styles.trash}`}>
+          <FiTrash2 />
         </span>
       </div>
     </form>

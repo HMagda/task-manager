@@ -6,22 +6,20 @@
   .input_container {
     @include flex-center;
     width: 80%;
-    position: relative;
 
     .input {
       font-family: $font-family;
-      height: ($base-size * 3);
       width: 100%;
+      overflow: hidden;
       padding: $base-size;
       font-size: ($base-size * 1.2);
     }
 
     .input_submit_btn {
       font-family: 'Quicksand', sans-serif;
-      position: absolute;
-      right: 0;
       height: min-content;
       margin: $base-size;
+      margin-right: 0;
       font-size: ($base-size * 1.2);
       transition: 0.3s all;
 

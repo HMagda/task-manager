@@ -2,7 +2,7 @@
 
 .single_task_container {
   background-color: rgba($color: $color-active, $alpha: 0.5);
-  margin: $base-size;
+  margin: $base-size 0;
   border-radius: $base-size;
   display: flex;
   justify-content: space-between;
@@ -10,13 +10,20 @@
 
   .single_task_text {
     margin: $base-size;
+    max-width: 70%;
+    word-wrap: break-word;
   }
 
   .icon_container {
     margin: $base-size;
+    display: flex;
 
     .icon {
       margin: $base-size;
+    }
+
+    .trash {
+      margin-left: ($base-size * 2);
     }
   }
 }
