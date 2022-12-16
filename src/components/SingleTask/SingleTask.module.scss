@@ -5,13 +5,14 @@
   margin: $base-size 0;
   border-radius: $base-size;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 
   .single_task_text {
     margin: $base-size;
-    max-width: 70%;
     word-wrap: break-word;
+    width: 70%;
   }
 
   .icon_container {
@@ -20,6 +21,10 @@
 
     .icon {
       margin: $base-size;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .trash {
