@@ -2,6 +2,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import styles from './SingleTask.module.scss';
 import {Task} from '../../model';
 import {FiEdit, FiTrash2, FiCheckCircle} from 'react-icons/fi';
+import {deleted} from '../../features/task/task-slice';
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
 
 interface Props {
   task: Task;
@@ -13,8 +15,14 @@ const SingleTask: React.FC<Props> = ({task, tasks, setTasks}) => {
   const [edited, setEdited] = useState<boolean>(false);
   const [editedTask, setEditedTask] = useState<string>(task.task);
 
-  const handleDelete = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const taskArr = useAppSelector((state) => state.manager.tasks);
+  const dispatch = useAppDispatch();
+
+  const handleDelete = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(deleted(task.id));
+    console.log(task.id, 'task.id');
+    console.log('handleDelete', taskArr);
   };
 
   const handleEdit = (e: React.FormEvent, id: number) => {
@@ -64,7 +72,7 @@ const SingleTask: React.FC<Props> = ({task, tasks, setTasks}) => {
         </span>
         <span
           className={`${styles.icon} ${styles.trash}`}
-          onClick={() => handleDelete(task.id)}
+          onClick={handleDelete}
         >
           <FiTrash2 />
         </span>

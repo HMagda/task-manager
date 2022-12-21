@@ -27,10 +27,23 @@ export const taskSlice = createSlice({
         isDone: false,
       });
     },
-    // deleted
+
+    deleted: (state, action: PayloadAction<number>) => {
+      let deletedTaskIndex = -1;
+
+      state.tasks.forEach((task) => {
+        deletedTaskIndex += 1;
+
+        if (task.id === action.payload) {
+          const deletedTask = task.id;
+          console.log('obecne id', deletedTask);
+          state.tasks.splice(deletedTaskIndex, 1);
+        }
+      });
+    },
     // done
   },
 });
 
-export const {added} = taskSlice.actions;
+export const {added, deleted} = taskSlice.actions;
 export default taskSlice.reducer;
