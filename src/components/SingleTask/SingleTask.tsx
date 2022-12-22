@@ -1,7 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from './SingleTask.module.scss';
-import {Task} from '../../model';
+import {Task, TaskEditDto} from '../../model';
 import {FiEdit, FiTrash2, FiCheckCircle} from 'react-icons/fi';
+import {deleted, modified} from '../../features/task/task-slice';
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
 
 interface Props {
   task: Task;
@@ -9,21 +11,27 @@ interface Props {
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
-const SingleTask: React.FC<Props> = ({task, tasks, setTasks}) => {
+const SingleTask: React.FC<Props> = ({task}) => {
   const [edited, setEdited] = useState<boolean>(false);
-  const [editedTask, setEditedTask] = useState<string>(task.task);
+  const [editedTask, setEditedTask] = useState<string>(task.text);
 
-  const handleDelete = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const taskArr = useAppSelector((state) => state.manager.tasks);
+  const dispatch = useAppDispatch();
+
+  const handleDelete = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(deleted(task.id));
   };
 
-  const handleEdit = (e: React.FormEvent, id: number) => {
-    console.log('dziala');
+  const handleModify = (e: React.FormEvent) => {
     e.preventDefault();
 
-    setTasks(
-      tasks.map((task) => (task.id === id ? {...task, task: editedTask} : task))
-    );
+    let edit: TaskEditDto = {
+      id: task.id,
+      text: editedTask,
+    };
+
+    dispatch(modified(edit));
     setEdited(false);
   };
 
@@ -33,10 +41,7 @@ const SingleTask: React.FC<Props> = ({task, tasks, setTasks}) => {
   }, [edited]);
 
   return (
-    <form
-      className={styles.single_task_container}
-      onSubmit={(e) => handleEdit(e, task.id)}
-    >
+    <form className={styles.single_task_container} onSubmit={handleModify}>
       {edited ? (
         <input
           className={`${styles.input} ${styles.single_task_text}`}
@@ -45,7 +50,7 @@ const SingleTask: React.FC<Props> = ({task, tasks, setTasks}) => {
           ref={inputRef}
         />
       ) : (
-        <div className={styles.single_task_text}>{task.task}</div>
+        <div className={styles.single_task_text}>{task.text}</div>
       )}
 
       <div className={styles.icon_container}>
@@ -64,7 +69,7 @@ const SingleTask: React.FC<Props> = ({task, tasks, setTasks}) => {
         </span>
         <span
           className={`${styles.icon} ${styles.trash}`}
-          onClick={() => handleDelete(task.id)}
+          onClick={handleDelete}
         >
           <FiTrash2 />
         </span>

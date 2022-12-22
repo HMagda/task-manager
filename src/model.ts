@@ -1,5 +1,10 @@
 export interface Task {
-    id: number;
-    task: string;
-    isDone: boolean;
+  id: number;
+  text: string;
+  isDone: boolean;
+}
+
+export interface TaskEditDto {
+  id: number;
+  text: string;
 }
