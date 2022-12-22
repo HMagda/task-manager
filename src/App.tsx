@@ -16,7 +16,6 @@ const App: React.FC = () => {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(added(taskNew));
-    console.log(task);
     if (taskNew) {
       setTaskNew('');
     }

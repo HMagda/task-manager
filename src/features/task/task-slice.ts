@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Task} from '../../model';
+import {Task, TaskEditDto} from '../../model';
 
 type TaskState = {
   tasks: Task[];
@@ -23,9 +23,17 @@ export const taskSlice = createSlice({
     added: (state, action: PayloadAction<string>) => {
       state.tasks.push({
         id: Date.now(),
-        task: action.payload,
+        text: action.payload,
         isDone: false,
       });
+    },
+
+    modified: (state, action: PayloadAction<TaskEditDto>) => {
+      state.tasks
+        .filter((taskEdit) => taskEdit.id === action.payload.id)
+        .forEach((task) => {
+          task.text = action.payload.text;
+        });
     },
 
     deleted: (state, action: PayloadAction<number>) => {
@@ -35,15 +43,14 @@ export const taskSlice = createSlice({
         deletedTaskIndex += 1;
 
         if (task.id === action.payload) {
-          const deletedTask = task.id;
-          console.log('obecne id', deletedTask);
           state.tasks.splice(deletedTaskIndex, 1);
         }
       });
     },
+
     // done
   },
 });
 
-export const {added, deleted} = taskSlice.actions;
+export const {added, modified, deleted} = taskSlice.actions;
 export default taskSlice.reducer;
