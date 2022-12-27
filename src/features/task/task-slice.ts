@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Task, TaskEditDto} from '../../model';
+import {Task, TaskEditDto, TaskDoneDto} from '../../model';
 
 type TaskState = {
   tasks: Task[];
@@ -33,6 +33,16 @@ export const taskSlice = createSlice({
         .filter((taskEdit) => taskEdit.id === action.payload.id)
         .forEach((task) => {
           task.text = action.payload.text;
+          task.isDone = false;
+        });
+    },
+
+    done: (state, action: PayloadAction<TaskDoneDto>) => {
+      console.log('done triggered!');
+      state.tasks
+        .filter((taskDone) => taskDone.id === action.payload.id)
+        .forEach((task) => {
+          task.isDone = action.payload.isDone;
         });
     },
 
@@ -47,10 +57,8 @@ export const taskSlice = createSlice({
         }
       });
     },
-
-    // done
   },
 });
 
-export const {added, modified, deleted} = taskSlice.actions;
+export const {added, modified, done, deleted} = taskSlice.actions;
 export default taskSlice.reducer;

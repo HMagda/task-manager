@@ -4,6 +4,11 @@ export interface Task {
   isDone: boolean;
 }
 
+export interface TaskDoneDto {
+  id: number;
+  isDone: boolean;
+}
+
 export interface TaskEditDto {
   id: number;
   text: string;

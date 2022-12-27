@@ -11,14 +11,32 @@ interface Props {
 const TaskList: React.FC<Props> = ({tasks, setTasks}) => {
   return (
     <div className={styles.task_list_container}>
-      {tasks.map((task) => (
-        <SingleTask
-          task={task}
-          key={task.id}
-          tasks={tasks}
-          setTasks={setTasks}
-        />
-      ))}
+      <div className={styles.active_tasks_container}>
+        <h2 className={styles.tasks_heading}>Active Tasks</h2>
+        {tasks
+          .filter((task) => task.isDone === false)
+          .map((task) => (
+            <SingleTask
+              task={task}
+              key={task.id}
+              tasks={tasks}
+              setTasks={setTasks}
+            />
+          ))}
+      </div>
+      <div className={styles.done_tasks_container}>
+        <h2 className={styles.tasks_heading}>Completed Tasks</h2>
+        {tasks
+          .filter((task) => task.isDone === true)
+          .map((task) => (
+            <SingleTask
+              task={task}
+              key={task.id}
+              tasks={tasks}
+              setTasks={setTasks}
+            />
+          ))}
+      </div>
     </div>
   );
 };

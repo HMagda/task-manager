@@ -1,7 +1,7 @@
 @import '../../styles/settings.scss';
 
 .single_task_container {
-  background-color: rgba($color: $color-active, $alpha: 0.5);
+  background-color: rgba($color: $color-active, $alpha: 0.4);
   margin: $base-size 0;
   border-radius: $base-size;
   display: flex;
@@ -19,6 +19,12 @@
     margin: $base-size;
     display: flex;
 
+    button {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+    }
+
     .icon {
       margin: $base-size;
 
@@ -27,8 +33,26 @@
       }
     }
 
+    .icon_disabled {
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+
     .trash {
       margin-left: ($base-size * 2);
+
+      &:hover {
+        color: $color-important;
+      }
     }
   }
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.background_done {
+  background-color: rgba($color: $color-done, $alpha: 0.4);
 }
