@@ -1,6 +1,6 @@
 # Task Manager
 
-A simple yet powerful React app for task management.
+Task Manager is a responsive task management app built with React, Redux, TypeScript, and SCSS. Users can add, edit, and delete tasks, which are categorized into 'Active' and 'Completed'. Tasks auto-transfer to 'Completed' when done, making this app an efficient tool for tracking tasks seamlessly.
 
 # Getting Started
 
@@ -11,4 +11,4 @@ A simple yet powerful React app for task management.
 
 # Features
 - Add, edit, or delete the task
-- Mark the completed tasks and view them in the 'completed tasks' section
+- Cross off the completed tasks and view them in the 'Completed Tasks' section
